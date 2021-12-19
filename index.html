@@ -298,6 +298,28 @@
             var deliver_menu = document.getElementById("deliver_Menu");
             var deliver_confirm = document.getElementById("deliver_confirmBtn");
 
+            function readAmount(){
+                const dbref = ref(db);
+
+                get(child(dbref, "Amount/")).then((snapshot)=>{
+                    var amount_hotchoco = snapshot.val().핫초코;
+                    var amount_bluecreamsoda = snapshot.val().블루크림소다;
+                    var amount_mintchoco = snapshot.val().민트초코;
+                    var amount_lemonade = snapshot.val().레몬에이드;
+                    var amount_grapefruit = snapshot.val().자몽에이드;
+                    var amount_greengrape = snapshot.val().청포도에이드;
+
+                    document.getElementById('hotchoco_amount').innerHTML = amount_hotchoco;
+                    document.getElementById('bluecreamsoda_amount').innerHTML = amount_bluecreamsoda;
+                    document.getElementById('mintchoco_amount').innerHTML = amount_mintchoco;
+                    document.getElementById('lemonade_amount').innerHTML = amount_lemonade;
+                    document.getElementById('grapefruit_amount').innerHTML = amount_grapefruit;
+                    document.getElementById('greengrape_amount').innerHTML = amount_greengrape;
+                });
+            }
+            
+            readAmount();
+
             let tag = Math.random().toString(36).substr(2,11);
 
             function InsertDeliverData() {
@@ -378,27 +400,6 @@
             }
             
             reserve_confirm.addEventListener('click', InsertReserveData);
-
-            function readAmount(){
-                const dbref = ref(db);
-
-                get(child(dbref, "Amount/")).then((snapshot)=>{
-                    var amount_hotchoco = snapshot.val().핫초코;
-                    var amount_bluecreamsoda = snapshot.val().블루크림소다;
-                    var amount_mintchoco = snapshot.val().민트초코;
-                    var amount_lemonade = snapshot.val().레몬에이드;
-                    var amount_grapefruit = snapshot.val().자몽에이드;
-                    var amount_greengrape = snapshot.val().청포도에이드;
-
-                    document.getElementById('hotchoco_amount').innerHTML = amount_hotchoco;
-                    document.getElementById('bluecreamsoda_amount').innerHTML = amount_bluecreamsoda;
-                    document.getElementById('mintchoco_amount').innerHTML = amount_mintchoco;
-                    document.getElementById('lemonade_amount').innerHTML = amount_lemonade;
-                    document.getElementById('grapefruit_amount').innerHTML = amount_grapefruit;
-                    document.getElementById('greengrape_amount').innerHTML = amount_greengrape;
-                });
-            }
-            readAmount();
           </script>
           <script type="text/javascript" src="Javascript.js"></script>
     </body>
