@@ -9,6 +9,14 @@ function hide_deliverInput(){
     document.getElementById('deliver_input').style.display = 'none';
     document.getElementById('reserve_input').style.display = 'none';
     document.getElementById('choice').style.display = '';
+    document.getElementById('deliver_Number').value = null;
+    document.getElementById('deliver_Name').value = null;
+    document.getElementById('deliver_Location').value = null;
+    document.getElementById('deliver_Menu').value = null;
+    document.getElementById('reserve_Number').value = null;
+    document.getElementById('reserve_Name').value = null;
+    document.getElementById('reserve_Time').value = null;
+    document.getElementById('reserve_Menu').value = null;
 } 
 function show_reserveInput(){
     document.getElementById('deliver_input').style.display = 'none';
