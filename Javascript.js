@@ -13,6 +13,7 @@ function hide_deliverInput(){
     document.getElementById('deliver_Name').value = null;
     document.getElementById('deliver_Location').value = null;
     document.getElementById('deliver_Menu').value = null;
+    document.getElementById('deliver_Pay').value = null;
     document.getElementById('reserve_Number').value = null;
     document.getElementById('reserve_Name').value = null;
     document.getElementById('reserve_Time').value = null;
