@@ -299,5 +299,9 @@ body {
         width: auto;
         margin-left: 10px;
         margin-right: 10px;
+    } .reserve_input {
+        width: auto;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 }
