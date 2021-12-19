@@ -287,14 +287,6 @@ body {
     } .choi {
         margin-left: 10px;
         margin-right: 10px;
-    }
-} @media(max-width: 780px) {
-    .notice_ment {
-        font-size: 15px;
-    } .choice_ment {
-        font-size: 25px;
-    } .notice_title {
-        font-size: 25px;
     } .deliver_input {
         width: auto;
         margin-left: 10px;
@@ -303,5 +295,13 @@ body {
         width: auto;
         margin-left: 10px;
         margin-right: 10px;
+    }
+} @media(max-width: 780px) {
+    .notice_ment {
+        font-size: 15px;
+    } .choice_ment {
+        font-size: 25px;
+    } .notice_title {
+        font-size: 25px;
     }
 }
