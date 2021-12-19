@@ -35,13 +35,13 @@
                 <div id="inputInfo">
                     <h1 class="Mess">배달 주문</h1>
                     <a class="BoxText">학번을 입력하세요</a><br>
-                    <input class="Box" id="deliver_Number" placeholder="학번" type="search" onclick=""></input><br><br>
+                    <input class="Box" id="deliver_Number" placeholder="학번" type="text" onclick=""></input><br><br>
                     <a class="BoxText">이름을 입력하세요</a><br>
-                    <input class="Box" id="deliver_Name" placeholder="이름" type="search" onclick=""></input><br><br>
+                    <input class="Box" id="deliver_Name" placeholder="이름" type="text" onclick=""></input><br><br>
                     <a class="BoxText">현재 위치를 알려주세요</a><br>   
-                    <input class="Box" id="deliver_Location" placeholder="예) 2학년 3반 교실" type="search" onclick=""></input><br><br>
+                    <input class="Box" id="deliver_Location" placeholder="예) 2학년 3반 교실" type="text" onclick=""></input><br><br>
                     <a class="BoxText">메뉴와 수량을 입력해주세요</a><br>
-                    <input class="Box" id="deliver_Menu" placeholder="예) 청포도에이드 2잔, 핫초코 1잔" type="search" onclick=""></input><br><br>
+                    <input class="Box" id="deliver_Menu" placeholder="예) 청포도에이드 2잔, 핫초코 1잔" type="text" onclick=""></input><br><br>
                     <input type="button" id="deliver_confirmBtn" class="confirm" value="확인" />
                     <input type="button" id="cancleBtn_1" class="cancle" value="취소" />
                 </div>
@@ -66,27 +66,33 @@
         <center>
             <div class="menu_div">
                 <h1 class="menu_title">MENU</h1>
-                <h5 class="menu_title_under">*사진과 실제음료는 다를 수 있습니다.*</h4>
+                <h5 class="menu_title_under">*남은 수량은 실시간으로 업데이트 됩니다.*</h5>
                 <h5 class="menu_title_under_2">*사진을 누르면 배달 주문 메뉴에 들어갑니다.*</h5>
                 <a onclick="order_hotchoco()" class="order">
                     <div class="photo_1">
                         <img class="menu_photo" src="photo/hotchoco.png"><br><br>
                         <a class="menu_intro">핫초코</a><br>
-                        <a class="menu_price">2000원</a>
+                        <a class="menu_price">2000원</a><br>
+                        <a class="menu_price">남은 수량 : </a>
+                        <a class="menu_price" id="hotchoco_amount"></a>
                     </div>
                 </a>
                 <a onclick=order_bluecreamsoda() class="order">
                     <div class="photo_2">
                         <img class="menu_photo" src="photo/bluelemon.png"><br><br>
                         <a class="menu_intro">블루크림소다</a><br>
-                        <a class="menu_price">3000원</a>
+                        <a class="menu_price">3000원</a><br>
+                        <a class="menu_price">남은 수량 : </a>
+                        <a class="menu_price" id="bluecreamsoda_amount"></a>
                     </div>
                 </a>
                 <a onclick="order_minchoco()" class="order">
                     <div class="photo_3">
                         <img class="menu_photo" src="photo/mintchoco.png"><br><br>
                         <a class="menu_intro">민트초코우유</a><br>
-                        <a class="menu_price">2000원</a>
+                        <a class="menu_price">2000원</a><br>
+                        <a class="menu_price">남은 수량 : </a>
+                        <a class="menu_price" id="mintchoco_amount"></a>
                     </div>
                 </a>
             </div>
@@ -98,21 +104,27 @@
                     <div class="photo_1">
                         <img class="menu_photo" src="photo/lemonade.png"><br><br>
                         <a class="menu_intro">레몬에이드</a><br>
-                        <a class="menu_price">2000원</a>
+                        <a class="menu_price">2000원</a><br>
+                        <a class="menu_price">남은 수량 : </a>
+                        <a class="menu_price" id="lemonade_amount"></a>
                     </div>'
                 </a>
                 <a onclick="order_grapefruit()" class="order">
                     <div class="photo_2">
                         <img class="menu_photo" src="photo/grapefruit.png"><br><br>
                         <a class="menu_intro">자몽에이드</a><br>
-                        <a class="menu_price">2000원</a>
+                        <a class="menu_price">2000원</a><br>
+                        <a class="menu_price">남은 수량 : </a>
+                        <a class="menu_price" id="grapefruit_amount"></a>
                     </div>
                 </a>
                 <a onclick="order_greengrape()" class="order">
                     <div class="photo_3">
                         <img class="menu_photo" src="photo/greengrapeade.png"><br><br>
                         <a class="menu_intro">청포도에이드</a><br>
-                        <a class="menu_price">2000원</a>
+                        <a class="menu_price">2000원</a><br>
+                        <a class="menu_price">남은 수량 : </a>
+                        <a class="menu_price" id="greengrape_amount"></a>
                     </div>
                 </a>
             </div>
@@ -276,7 +288,7 @@
             // Initialize Firebase
             const app = initializeApp(firebaseConfig);
 
-            import {getDatabase, ref, set, child, remove} from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"
+            import {getDatabase, ref, set, child, remove, get} from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"
 
             const db = getDatabase();
             //배달 주문
@@ -323,7 +335,6 @@
             }
             
             deliver_confirm.addEventListener('click', InsertDeliverData);
-            
 
             //예약 주문
             var reserve_number = document.getElementById("reserve_Number");
@@ -365,8 +376,29 @@
                     })
                 }
             }
-        
+            
             reserve_confirm.addEventListener('click', InsertReserveData);
+
+            function readAmount(){
+                const dbref = ref(db);
+
+                get(child(dbref, "Amount/")).then((snapshot)=>{
+                    var amount_hotchoco = snapshot.val().핫초코;
+                    var amount_bluecreamsoda = snapshot.val().블루크림소다;
+                    var amount_mintchoco = snapshot.val().민트초코;
+                    var amount_lemonade = snapshot.val().레몬에이드;
+                    var amount_grapefruit = snapshot.val().자몽에이드;
+                    var amount_greengrape = snapshot.val().청포도에이드;
+
+                    document.getElementById('hotchoco_amount').innerHTML = amount_hotchoco;
+                    document.getElementById('bluecreamsoda_amount').innerHTML = amount_bluecreamsoda;
+                    document.getElementById('mintchoco_amount').innerHTML = amount_mintchoco;
+                    document.getElementById('lemonade_amount').innerHTML = amount_lemonade;
+                    document.getElementById('grapefruit_amount').innerHTML = amount_grapefruit;
+                    document.getElementById('greengrape_amount').innerHTML = amount_greengrape;
+                });
+            }
+            readAmount();
           </script>
           <script type="text/javascript" src="Javascript.js"></script>
     </body>
