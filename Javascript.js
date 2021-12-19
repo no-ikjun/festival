@@ -40,7 +40,7 @@ function showBoard(){
     document.getElementById('boardphoto_btn').style.display = '';
     document.getElementById('board_btn').style.display = 'none';
 
-    window.scrollTo(0, document.body.scrollHeight)
+    window.scrollTo(0, document.body.scrollHeight);
 }
 const board_click = document.getElementById('board_btn');
 board_click.addEventListener('click', showBoard);
@@ -66,7 +66,7 @@ function showGame(){
     document.getElementById('game_btn').style.display = 'none';
     document.getElementById('gamephoto_btn').style.display = '';
 
-    window.scrollTo(0, document.body.scrollHeight)
+    window.scrollTo(0, document.body.scrollHeight);
 }
 const game_click = document.getElementById('game_btn');
 game_click.addEventListener('click', showGame);

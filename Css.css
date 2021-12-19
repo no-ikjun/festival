@@ -230,7 +230,7 @@ body {
 } .blank {
     margin-left: 15%;
     margin-right: 15%;
-    margin-top: 30px;
+    margin-top: 40px;
 } .board_div {
     margin-left: 15%;
     padding-top: 30px;
@@ -258,4 +258,38 @@ body {
     color: rgb(182, 182, 182);
     text-align: right;
     float: right;
+} @media(max-width: 1200px) {
+    .upper {
+        padding-left: 10px;
+        padding-right: 10px;
+    } .intro {
+        margin-left: 10px;
+        margin-right: 10px;
+    } .choice {
+        margin-left: 10px;
+        margin-right: 10px;
+    } .menu_div {
+        margin-left: 10px;
+        margin-right: 10px;
+    } .blank {
+        margin-left: 10px;
+        margin-right: 10px;
+    } .board_div {
+        margin-left: 10px;
+        margin-right: 10px;
+    } .board_int {
+        margin-left: 10px;
+        margin-right: 10px;
+    } .choi {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+} @media(max-width: 780px) {
+    .notice_ment {
+        font-size: 15px;
+    } .choice_ment {
+        font-size: 25px;
+    } .notice_title {
+        font-size: 25px;
+    }
 }
