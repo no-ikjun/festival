@@ -283,10 +283,6 @@ body {
     } .choi {
         margin-left: 10px;
         margin-right: 10px;
-    } .deliver_input {
-        width: auto;
-        margin-left: 10px;
-        margin-right: 10px;
     }
 } @media(max-width: 780px) {
     .notice_ment {
@@ -295,5 +291,9 @@ body {
         font-size: 25px;
     } .notice_title {
         font-size: 25px;
+    } .deliver_input {
+        width: auto;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 }
