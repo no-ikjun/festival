@@ -42,6 +42,8 @@
                     <input class="Box" id="deliver_Location" placeholder="예) 2학년 3반 교실" type="text" onclick=""></input><br><br>
                     <a class="BoxText">메뉴와 수량을 입력해주세요</a><br>
                     <input class="Box" id="deliver_Menu" placeholder="예) 청포도에이드 2잔, 핫초코 1잔" type="text" onclick=""></input><br><br>
+                    <a class="BoxText">지불 방법을 알려주세요</a><br>
+                    <input class="Box" id="deliver_Pay" placeholder="예) 현금 또는 계좌이체" type="text" onclick=""></input><br><br>
                     <input type="button" id="deliver_confirmBtn" class="confirm" value="확인" />
                     <input type="button" id="cancleBtn_1" class="cancle" value="취소" />
                 </div>
@@ -291,12 +293,6 @@
             import {getDatabase, ref, set, child, remove, get} from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"
 
             const db = getDatabase();
-            //배달 주문
-            var deliver_number = document.getElementById("deliver_Number");
-            var deliver_name = document.getElementById("deliver_Name");
-            var deliver_location = document.getElementById("deliver_Location");
-            var deliver_menu = document.getElementById("deliver_Menu");
-            var deliver_confirm = document.getElementById("deliver_confirmBtn");
 
             function readAmount(){
                 const dbref = ref(db);
@@ -320,6 +316,14 @@
             
             readAmount();
 
+            //배달 주문
+            var deliver_number = document.getElementById("deliver_Number");
+            var deliver_name = document.getElementById("deliver_Name");
+            var deliver_location = document.getElementById("deliver_Location");
+            var deliver_menu = document.getElementById("deliver_Menu");
+            var deliver_confirm = document.getElementById("deliver_confirmBtn");
+            var deliver_pay = document.getElementById("deliver_Pay");
+
             let tag = Math.random().toString(36).substr(2,11);
 
             function InsertDeliverData() {
@@ -331,12 +335,15 @@
                     alert("모든 값을 입력하세요.");
                 } else if (deliver_location.value===""){
                     alert("모든 값을 입력하세요.");
+                } else if (deliver_pay.value===""){
+                    alert("모든 값을 입력하세요.")
                 } else {
                     set(ref(db, "Deliver/"+ tag),{
                     학번: deliver_number.value,
                     이름: deliver_name.value,
                     배달장소: deliver_location.value,
-                    메뉴: deliver_menu.value
+                    메뉴: deliver_menu.value,
+                    결제수단: deliver_pay.value
                     })
                     .then(()=>{
                         alert("주문이 완료되었습니다.");
@@ -348,6 +355,8 @@
                         input_location.value = null;
                         var input_menu = document.getElementById("deliver_Menu");
                         input_menu.value = null;
+                        var input_pay = document.getElementById("deliver_Pay");
+                        input_pay.value = null
                         location.reload();
                     })
                     .catch((error)=>{
