@@ -97,6 +97,7 @@ body {
     border-radius: 4px;
     height: auto;
     width: 30%;
+    color: black;
 } .deliver_btn:hover {
     transition: 0.1s;
     transform: scale(1.1);
@@ -140,6 +141,7 @@ body {
     font-family: "main";
     font-size: 20px;
     border-radius: 5px;
+    color: black;
 } .cancle {
     transition: 0.2s;
     margin-top: 20px;
@@ -148,6 +150,7 @@ body {
     font-family: "main";
     font-size: 20px;
     border-radius: 5px;
+    color: black;
 } .confirm:hover {
     transform: scale(1.01);
     transition: 0.2s;
@@ -241,6 +244,7 @@ body {
     font-family: "bread";
     font-weight: 100;
     font-size: 15px;
+    color: black;
 } .board_int {
     margin-left: 15%;
     padding-top: 30px;
